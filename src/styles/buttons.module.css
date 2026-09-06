@@ -1,0 +1,38 @@
+.buttonBase {
+  border-radius: var(--btn-radius);
+  cursor: pointer;
+}
+
+.buttonVariantDefault,
+.buttonVariantTextIcon {
+  padding: 0.4rem 0.75rem;
+  font-size: 0.95rem;
+
+  font-weight: 400;
+
+  border: 1px solid var(--border);
+
+  color: var(--button-text-default);
+  background-color: var(--button-bg-default);
+}
+
+.buttonVariantTextIcon {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.buttonVariantIcon {
+  background: transparent;
+  border: none;
+
+  font-size: 1rem;
+}
+
+.buttonVariantLink {
+  background: transparent;
+  border: none;
+
+  font-size: 1rem;
+}
