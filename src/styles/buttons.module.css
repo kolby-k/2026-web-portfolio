@@ -1,5 +1,5 @@
 .buttonBase {
-  border-radius: var(--btn-radius);
+  border-radius: var(--radius);
   cursor: pointer;
 }
 

@@ -1,0 +1,21 @@
+.content {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 1rem;
+}
+
+.header {
+  min-height: 250px;
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  position: relative;
+}
+
+.bannerImage {
+  padding: 1rem;
+}

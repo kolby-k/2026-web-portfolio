@@ -3,20 +3,21 @@ import Home from "./pages/home/Home";
 import ProjectLayout from "./pages/projects/ProjectLayout";
 import NotFound from "./pages/NotFound";
 import Project from "./pages/projects/Project";
-import Header from "./components/Header";
+import AppLayout from "./pages/AppLayout";
 
 function App() {
   return (
-    <>
-      <Header />
-      <Routes>
-        <Route element={<Home />} index />
+    <Routes>
+      <Route element={<AppLayout />}>
+        <Route index element={<Home />} />
+
         <Route element={<ProjectLayout />}>
-          <Route element={<Project />} path="/projects/:projectSlug" />
+          <Route path="projects/:projectSlug" element={<Project />} />
         </Route>
-        <Route element={<NotFound />} path="*" />
-      </Routes>
-    </>
+
+        <Route path="*" element={<NotFound />} />
+      </Route>
+    </Routes>
   );
 }
 

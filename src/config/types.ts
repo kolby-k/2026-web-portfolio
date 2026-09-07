@@ -1,3 +1,38 @@
+// simple view of project
+// - common properties among all types of activity
+type ActivityBase = {
+  id: string;
+  title: string;
+  slug: string; // internal url of project article
+  focus: ActivityFocusType[];
+  shortDescription: string; // under 20 words.
+  year: string;
+  technology?: Technologies;
+  article: {
+    bannerImage: string;
+    fullDescription: string;
+    urls: ActivityURL[] | null;
+    content: ArticleContent[];
+  };
+};
+
+// Activities are 'projects' I want to showcase grouped by a type
+export type ActivityWork = ActivityBase & {
+  type: "work case study";
+  roleId: string;
+};
+export type ActivityDeployed = ActivityBase & {
+  type: "deployed project";
+  longDescription: string;
+  urls: ActivityURL[];
+};
+export type ActivityHobby = ActivityBase & {
+  type: "hobby project";
+};
+export type ActivityItem = ActivityWork | ActivityDeployed | ActivityHobby;
+// remove 'article' to keep lightweight list of items for timeline rendering
+export type ActivityItemSimple = Omit<ActivityItem, "article">;
+
 // each activity article ultimatlet renders text/images
 // by sorting and then looping through content array
 export type ArticleContent =
@@ -15,51 +50,31 @@ export type ArticleContent =
       imageDescription?: string;
     };
 
-// detailed view of project
-// - all properties to render article page
-export interface ActivityArticle extends Activity {
-  bannerImage: string;
-  fullDescription: string;
-  urls: ActivityURL[] | null;
-  content: ArticleContent[];
-}
-
-// simple view of project
-// - common properties among all types of activity
-export interface Activity {
-  id: string;
-  title: string;
-  slug: string; // internal url of project article
-  type: ActivityType;
-  focus: ActivityFocusType[];
-  shortDescription: string; // under 20 words.
-  technology?: Technologies;
-}
-
-// list of items to render on a timleline
-export interface TimelineItem {
+type TimelineItemBase = {
   id: string;
   title: string;
   description: string;
   startDate: string;
   endDate: string | null;
-}
-// specific roles worked in the past (e.g. data analyst, tech support)
-export interface Role extends TimelineItem {
+};
+export type TimelineItemWork = TimelineItemBase & {
+  type: "work";
   company: string;
-}
-
-export interface Education extends TimelineItem {
+};
+export type TimelineItemEducation = TimelineItemBase & {
+  type: "education";
   institution:
     | "Thompson Rivers University"
     | "Codecademy"
     | "Southern Alberta Institute of Technology";
-  type: "Post Secondary" | "Professional Development";
+  about: "Post Secondary" | "Professional Development";
   outcome:
     | "Bachelor of Business Administration - Economics"
     | "Certificate"
     | null;
-}
+};
+// list of items to render on a timleline
+export type TimelineItem = TimelineItemWork | TimelineItemEducation;
 
 // hyperlink to a projects source code, project url, etc.
 export type ActivityURL = {
@@ -75,12 +90,6 @@ export type Technologies = {
   tools?: Tools[];
   database?: Database;
 };
-
-// 'projects' I want to showcase grouped by a common type
-export type ActivityType =
-  | "work case study"
-  | "deployed project"
-  | "hobby project";
 
 export type ActivityFocusType =
   | "backend development"
@@ -114,17 +123,3 @@ export type Libraries =
   | "Supertest"
   | "RingCentral SDK";
 export type Database = "PostgreSQL" | "Redis" | "Zoho Datastore";
-
-// // represents a real world case study / project from my work
-// export interface WorkActivity extends Activity {
-//   roleId: string;
-// }
-// // production apps deployed in the past (e.g. Evolve workout tracker)
-// export interface DeployedProject extends Activity {
-//   longDescription: string;
-//   urls: ActivityURL[];
-// }
-// // not serious projects, more for fun and practice
-// export interface HobbyProject extends Activity {
-//   projectId: string;
-// }

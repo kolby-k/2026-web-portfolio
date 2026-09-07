@@ -1,29 +1,11 @@
-.page,
-.flex-page,
-.project-layout {
+.page {
   position: relative;
-  height: 100dvh;
+  min-height: 100dvh;
   max-width: min(calc(100svw - 2rem), 1250px);
   margin: auto;
   padding: 1rem;
 }
 
-.flex-page {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 1rem;
-}
-
-.project-content {
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  gap: 1rem;
-}
 .info-label {
   font-size: 0.95rem;
   color: var(--text-secondary);
