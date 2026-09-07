@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
 import { PROJECTS_SIMPLE } from "../config/constants";
 import styles from "../styles/project-table.module.css";
+import CustomLink from "./CustomLink";
 
 function ProjectTable() {
   return (
@@ -19,12 +19,12 @@ function ProjectTable() {
             return (
               <tr key={`${project.id}`}>
                 <td>
-                  <Link
+                  <CustomLink
+                    type="internal"
                     to={`/projects/${project.slug}`}
-                    className={styles.tableRow}
-                  >
-                    {project.title}
-                  </Link>
+                    title={project.title}
+                    variant="link"
+                  />
                 </td>
                 <td>{project.type}</td>
                 <td>{project.year}</td>

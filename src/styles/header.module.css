@@ -1,5 +1,4 @@
 .header {
-  --header-height: 55px;
   position: sticky;
 
   height: var(--header-height);
@@ -28,19 +27,21 @@
   height: 120px;
   width: 100%;
 
-  position: absolute;
+  position: fixed;
   top: var(--header-height);
   left: 0;
 
   background-color: var(--surface-clear);
-  border-top: 1px solid var(--border);
 
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 
-  display: grid;
+  border-top: 1px solid var(--border);
 
+  display: grid;
   padding: 1rem;
+
+  z-index: 99;
 }
 .mobileLinkList {
   display: flex;

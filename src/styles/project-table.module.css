@@ -19,14 +19,21 @@
 .table th {
   padding: 0.5rem 2rem;
   font-weight: 600;
+  font-size: 0.95rem;
+  background-color: var(--surface);
 }
 
 .table td {
   padding: 1rem 2rem;
+  font-size: 0.9rem;
+  background-color: var(--surface-clear);
+}
+.table tr:hover {
+  background-color: var(--surface-hover);
 }
 
 .table th:nth-child(1) {
-  width: 25%;
+  width: 20%;
 }
 
 .table th:nth-child(2) {
@@ -38,7 +45,7 @@
 }
 
 .table th:nth-child(4) {
-  width: 45%;
+  width: 50%;
 }
 
 @media (max-width: 768px) {

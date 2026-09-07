@@ -1,0 +1,35 @@
+.customLinkBase {
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+.customLinkBase:hover {
+  text-decoration: underline;
+}
+
+.fontSize_sm {
+  font-size: 0.8rem;
+}
+.fontSize_base {
+  font-size: 0.9rem;
+}
+.fontSize_md {
+  font-size: 1rem;
+}
+.fontSize_lg {
+  font-size: 1.1rem;
+}
+.customLink_default {
+  color: var(--text);
+}
+.customLink_link {
+  color: var(--text-link);
+}
+.customLink_link:visited {
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+.customLink_active {
+  text-decoration: underline;
+}

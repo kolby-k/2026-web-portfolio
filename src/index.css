@@ -52,12 +52,15 @@
 
   --text: #000000;
   --text-secondary: #121212;
+  --text-link: oklch(55% 0.2 260);
+
   --button-text-default: var(--text-secondary);
 
   --bg: #ffffff;
 
-  --surface: #aaaaaa;
-  --surface-clear: #aaaaaa4a;
+  --surface: #f3f1f1;
+  --surface-clear: #e0dede4a;
+  --surface-hover: oklch(90.968% 0.00212 14.359);
 
   --button-bg-default: #d6d6df;
 
@@ -69,12 +72,15 @@
 
   --text: #ffffff;
   --text-secondary: #efefef;
+  --text-link: oklch(85% 0.35 270);
+
   --button-text-default: var(--text-secondary);
 
   --bg: #000000;
 
-  --surface: #101010;
-  --surface-clear: #1010104a;
+  --surface: #181818;
+  --surface-clear: #2726264a;
+  --surface-hover: oklch(25.904% 0.00002 271.152);
 
   --button-bg-default: #252527;
 
@@ -82,11 +88,18 @@
 }
 
 #root {
-  font-family: monospace;
+  font-family: var(--base-text), Arial, Helvetica, sans-serif;
+  font-size: 16px;
+
+  --fancy-test: "Raleway";
+  --base-text: "IBM Plex Sans";
+
   --radius: 6px;
   --radius-lg: 10px;
   --radius-sm: 4px;
   --radius-round: 99px;
+
+  --header-height: 55px;
 }
 
 *,
