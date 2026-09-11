@@ -4,36 +4,28 @@ import Button from "./Button";
 import styles from "../styles/header.module.css";
 
 import { RiSunLine, RiMoonFill, RiMenuFill } from "react-icons/ri";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import CustomLink from "./CustomLink";
+import Logo from "./Logo";
 
 function Header() {
   const { theme, toggleTheme, isDark } = useTheme();
 
   const nav = useNavigate();
-
+  const location = useLocation();
   const [expanded, setExpanded] = useState<boolean>(false);
 
-  const toggleMenu = () => {
-    setExpanded(!expanded);
-  };
-
-  const navigateTo = (path: string) => {
+  useEffect(() => {
     setExpanded(false);
-    nav(path);
-  };
+  }, [location]);
 
-  const handleThemeChange = () => {
-    setExpanded(false);
-    toggleTheme();
-  };
   return (
     <>
       <div className={styles.header}>
         <div className={styles.headerDesktop}>
-          <Button handleClick={() => navigateTo("/")} variant="Link">
-            Logo Placeholder
+          <Button handleClick={() => nav("/")} variant="Link">
+            <Logo />
           </Button>
 
           <div className={styles.desktopLinkList}>
@@ -50,6 +42,8 @@ function Header() {
               title="Timeline"
               size="md"
             />
+
+            <CustomLink type="internal" to="/vault" title="More" size="md" />
           </div>
 
           <Button
@@ -63,11 +57,11 @@ function Header() {
         </div>
 
         <div className={styles.headerMobile}>
-          <Button handleClick={() => navigateTo("/")} variant="Link">
-            Logo Placeholder
+          <Button handleClick={() => nav("/")} variant="Link">
+            <Logo />
           </Button>
 
-          <Button handleClick={toggleMenu} variant="Icon">
+          <Button handleClick={() => setExpanded(!expanded)} variant="Icon">
             <RiMenuFill />
           </Button>
         </div>
@@ -79,7 +73,7 @@ function Header() {
             <h3 className="sub-heading">Theme</h3>
 
             <Button
-              handleClick={handleThemeChange}
+              handleClick={toggleTheme}
               title={theme === "dark" ? "Light" : "Dark"}
               variant="TextIcon"
               iconSide="left"
@@ -89,13 +83,21 @@ function Header() {
           </div>
 
           <div className={styles.mobileLinkList}>
-            <Button handleClick={() => navigateTo("/#Projects")} variant="Link">
-              Projects
-            </Button>
+            <CustomLink
+              type="internal"
+              to="/#Projects"
+              title="Projects"
+              size="md"
+            />
 
-            <Button handleClick={() => navigateTo("/#Timeline")} variant="Link">
-              Timeline
-            </Button>
+            <CustomLink
+              type="internal"
+              to="/#Timeline"
+              title="Timeline"
+              size="md"
+            />
+
+            <CustomLink type="internal" to="/vault" title="More" size="md" />
           </div>
         </div>
       )}

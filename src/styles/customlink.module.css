@@ -5,6 +5,7 @@
 }
 .customLinkBase:hover {
   text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
 .fontSize_sm {
@@ -20,7 +21,7 @@
   font-size: 1.1rem;
 }
 .customLink_default {
-  color: var(--text);
+  color: var(--text-secondary);
 }
 .customLink_link {
   color: var(--text-link);
@@ -32,4 +33,6 @@
 
 .customLink_active {
   text-decoration: underline;
+  text-underline-offset: 4px !important;
+  color: var(--text);
 }

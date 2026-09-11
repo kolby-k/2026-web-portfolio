@@ -1,5 +1,4 @@
 .tableWrapper {
-  border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   overflow-x: auto;
 }
@@ -7,53 +6,43 @@
 .table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 650px;
+  table-layout: auto;
+  min-width: 550px;
 }
 
 .table th,
 .table td {
   text-align: left;
   border-bottom: 1px solid var(--border);
+  overflow-wrap: anywhere;
 }
 
 .table th {
-  padding: 0.5rem 2rem;
+  padding: 0.5rem clamp(0.5rem, 2vw, 2rem);
   font-weight: 600;
   font-size: 0.95rem;
-  background-color: var(--surface);
+  background-color: var(--surface-clear);
 }
 
 .table td {
-  padding: 1rem 2rem;
+  padding: 1rem clamp(0.5rem, 2vw, 2rem);
   font-size: 0.9rem;
-  background-color: var(--surface-clear);
 }
+
 .table tr:hover {
   background-color: var(--surface-hover);
 }
 
-.table th:nth-child(1) {
-  width: 20%;
-}
-
-.table th:nth-child(2) {
-  width: 20%;
-}
-
-.table th:nth-child(3) {
-  width: 10%;
-}
-
-.table th:nth-child(4) {
-  width: 50%;
+/* Keep the year compact and on one line. */
+.table th:first-child,
+.table td:first-child {
+  width: 1%;
+  white-space: nowrap;
 }
 
 @media (max-width: 768px) {
-  .table th {
-    padding: 0.5rem 1rem;
-  }
-
-  .table td {
-    padding: 1rem;
+  .table th:last-child,
+  .table td:last-child {
+    display: none;
   }
 }

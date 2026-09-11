@@ -1,7 +1,7 @@
 import styles from "./project.module.css";
 import { Link, useParams } from "react-router-dom";
 import { PROJECTS_DETAILED } from "../../config/constants";
-import ArticleBannerImage from "./components/ArticleBannerImage";
+import Tag from "../../components/Tag";
 
 function Project() {
   const { projectSlug } = useParams();
@@ -21,19 +21,46 @@ function Project() {
 
   return (
     <div className={styles.content}>
-      <div className={styles.header}>
+      <div className={`${styles.header}`}>
+        <span className={`${styles.headerProjectTypeTag}`}>
+          <Tag title={project.type} variant="primary" size="sm" />
+        </span>
         <h1>{project.title}</h1>
-        <p>{project.shortDescription}</p>
-        <ArticleBannerImage projectId={project.id} />
-        <p>{project.focus.join(", ")}</p>
-
-        <p>{project.type}</p>
+        <div className={styles.projectHeaderDescription}>
+          <p>About</p>
+          <p>{project.shortDescription}</p>
+          <span>
+            {project.focus.map((f) => (
+              <Tag key={`${project.id}-${f}`} title={f} size="sm" />
+            ))}
+          </span>
+        </div>
       </div>
 
-      <div>
-        intro to project section (description on left | tech on right)
-        <div>{project.article.fullDescription}</div>
-        <div>Tech section</div>
+      <div className={styles.introAndTechSection}>
+        <div className={styles.introSection}>
+          <h2>Introduction</h2>
+          {project.article.fullDescription}
+        </div>
+        <div className={styles.techSection}>
+          <h2>Technology</h2>
+          <p className="main-text">
+            Environment: {project.technology?.environment}
+          </p>
+          <p className="main-text">
+            API: {project.technology?.apis?.join(", ")}
+          </p>
+          <p className="main-text">Database: {project.technology?.database}</p>
+          <p className="main-text">
+            Languages: {project.technology?.languages?.join(", ")}
+          </p>
+          <p className="main-text">
+            Libraries: {project.technology?.libraries?.join(", ")}
+          </p>
+          <p className="main-text">
+            Tools: {project.technology?.tools?.join(", ")}
+          </p>
+        </div>
       </div>
 
       <div>
@@ -42,11 +69,20 @@ function Project() {
 
           if (type === "text") {
             return (
-              <div key={`${type}-${idx}`}>
-                <h2>{section.heading} </h2>
-                {section.paragraphs.map((text, idx) => {
-                  return <p key={`${section.heading}-${idx}`}>{text}</p>;
-                })}
+              <div key={`${type}-${idx}`} className={styles.contentBlock}>
+                <h2 className={styles.textHeading}>{section.heading} </h2>
+                <div className={styles.paragraph}>
+                  {section.paragraphs.map((text, idx) => {
+                    return (
+                      <p
+                        key={`${section.heading}-${idx}`}
+                        className={"main-text"}
+                      >
+                        {text}
+                      </p>
+                    );
+                  })}
+                </div>
               </div>
             );
           } else if (type === "image") {

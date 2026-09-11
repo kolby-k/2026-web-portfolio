@@ -18,20 +18,27 @@ type ActivityBase = {
 
 // Activities are 'projects' I want to showcase grouped by a type
 export type ActivityWork = ActivityBase & {
-  type: "work case study";
+  type: "work";
   roleId: string;
 };
 export type ActivityDeployed = ActivityBase & {
-  type: "deployed project";
+  type: "deployed";
   longDescription: string;
   urls: ActivityURL[];
 };
 export type ActivityHobby = ActivityBase & {
-  type: "hobby project";
+  type: "hobby";
+  longDescription: string;
 };
 export type ActivityItem = ActivityWork | ActivityDeployed | ActivityHobby;
 // remove 'article' to keep lightweight list of items for timeline rendering
-export type ActivityItemSimple = Omit<ActivityItem, "article">;
+type DistributiveOmit<T, K extends PropertyKey> = T extends unknown
+  ? Omit<T, K>
+  : never;
+
+export type ActivityItemSimple = DistributiveOmit<ActivityItem, "article">;
+
+export type ActivityType = ActivityItemSimple["type"];
 
 // each activity article ultimatlet renders text/images
 // by sorting and then looping through content array
@@ -73,40 +80,41 @@ export type TimelineItemEducation = TimelineItemBase & {
     | "Certificate"
     | null;
 };
+
 // list of items to render on a timleline
 export type TimelineItem = TimelineItemWork | TimelineItemEducation;
 
 // hyperlink to a projects source code, project url, etc.
 export type ActivityURL = {
   url: string;
-  type: "github" | "app store" | "project root";
+  type: "github" | "app store" | "project";
 };
 
 export type Technologies = {
   environment?: Environment;
   languages?: Languages[];
-  apis?: APIOptions[];
+  apis?: API[];
   libraries?: Libraries[];
   tools?: Tools[];
   database?: Database;
 };
-
 export type ActivityFocusType =
   | "backend development"
   | "frontend development"
-  | "workflow automations"
-  | "integrations"
+  | "workflow automation"
+  | "API integrations"
   | "software design"
-  | "data preprocessing"
+  | "data processing"
   | "data integrity";
-export type APIOptions =
-  | "Microsoft"
-  | "OpenAI"
-  | "Zoho"
-  | "RingCentral"
-  | "openMateo"
-  | "DOM api's";
-export type Languages = "Javascript" | "Typescript" | "SQL" | "Deluge";
+
+export type API =
+  | "Microsoft Graph API"
+  | "OpenAI API"
+  | "Zoho CRM API"
+  | "RingCentral API"
+  | "Open-Meteo API"
+  | "DOM API";
+export type Languages = "JavaScript" | "TypeScript" | "SQL" | "Deluge";
 export type Environment = "Node.js" | "Zoho Platform";
 export type Tools =
   | "Microsoft Excel"
@@ -114,12 +122,16 @@ export type Tools =
   | "Zoho Flow"
   | "Zoho Catalyst"
   | "Zoho Forms"
-  | "Expo";
+  | "Expo"
+  | "Google Oauth";
 export type Libraries =
   | "Redux Toolkit"
   | "Apple Storekit"
-  | "msal/node"
+  | "@azure/msal-node"
   | "Jest"
   | "Supertest"
-  | "RingCentral SDK";
-export type Database = "PostgreSQL" | "Redis" | "Zoho Datastore";
+  | "RingCentral SDK"
+  | "Next.js"
+  | "React"
+  | "React Native";
+export type Database = "PostgreSQL" | "Redis" | "Zoho Catalyst Data Store";
