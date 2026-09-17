@@ -49,7 +49,6 @@ function Header() {
           <Button
             handleClick={toggleTheme}
             title={theme === "dark" ? "Light" : "Dark"}
-            variant="TextIcon"
             iconSide="left"
           >
             {isDark ? <RiSunLine /> : <RiMoonFill />}
@@ -75,7 +74,6 @@ function Header() {
             <Button
               handleClick={toggleTheme}
               title={theme === "dark" ? "Light" : "Dark"}
-              variant="TextIcon"
               iconSide="left"
             >
               {isDark ? <RiSunLine /> : <RiMoonFill />}

@@ -1,6 +1,4 @@
 :root {
-  --primary: oklch(57% 0.1 257);
-  --primary-light: oklch(77% 0.1 257);
   --primary-dark: oklch(37% 0.1 257);
 
   --fancy-text: "Raleway";
@@ -22,13 +20,21 @@
 
 :root {
   color-scheme: light;
+
+  --primary: oklch(57% 0.1 257);
+  --primary-light: oklch(70% 0.13 257);
+  --primary-dark: oklch(37% 0.1 257);
+
   --primary-soft: var(--primary-dark);
   --primary-deep: var(--primary-light);
 
-  --text: #171717;
-  --text-highlight: #060606;
-  --text-secondary: #121212;
-  --text-link: oklch(55% 0.2 260);
+  --text: #181b2a;
+  --text-highlight: oklch(10.212% 0.00001 271.152);
+  --text-secondary: #50596f;
+  --text-muted: oklch(60.22% 0.00002 271.152);
+  --text-link: #315fad;
+  --text-brand: oklch(50% 0.11 265);
+  --text-inverted: #fff;
 
   --button-text-default: var(--text-secondary);
 
@@ -37,23 +43,39 @@
   --surface: #f3f1f1;
   --surface-clear: #e0dede4a;
   --surface-hover: oklch(90.968% 0.00212 14.359);
+  --surface-card: #ffffff;
+  --surface-card-hover: oklch(95.968% 0.009 265);
 
   --button-bg-default: #e6e6ec;
 
   --border: #afafaf;
-  --border-surface: #dddddd;
+  --border-surface: #dde2ec;
+  --border-surface-hover: #91acd5;
+  --border-brand: oklch(90.968% 0.05 265);
+
+  --divider: #afafaf;
+
+  --green-badge-bg: #e6f3ec;
+  --green-badge-border: #bddccb;
+  --green-badge-text: #286348;
 }
 
 :root[data-theme="dark"] {
   color-scheme: dark;
 
+  --primary: oklch(57% 0.1 257);
+  --primary-light: oklch(77% 0.1 257);
   --primary-soft: var(--primary-dark);
   --primary-deep: var(--primary-light);
+  --primary-dark: oklch(50% 0.1 257);
 
   --text: #ddd;
   --text-highlight: #fafafa;
   --text-secondary: #ccc;
+  --text-muted: oklch(74.522% 0.0001 271.152);
   --text-link: oklch(85% 0.35 270);
+  --text-brand: oklch(60% 0.11 265);
+  --text-inverted: #000;
 
   --button-text-default: var(--text-secondary);
 
@@ -62,11 +84,21 @@
   --surface: #161616;
   --surface-clear: #4746464a;
   --surface-hover: oklch(25.904% 0.00002 271.152);
+  --surface-card: oklch(22.697% 0.02739 277.704);
+  --surface-card-hover: oklch(25% 0.035 275);
 
   --button-bg-default: #252527;
 
   --border: #646464;
-  --border-surface: #343434;
+  --border-surface: #2d3144;
+  --border-surface-hover: #40567a;
+  --border-brand: oklch(35% 0.035 275);
+
+  --divider: #646464;
+
+  --green-badge-bg: #21342f;
+  --green-badge-border: #bddccb;
+  --green-badge-text: #b0d6c7;
 }
 
 *,
@@ -106,4 +138,17 @@ html {
 
 .fancy-text {
   font-family: var(--fancy-text);
+}
+
+hr {
+  border-color: var(--divider);
+}
+
+.half-width {
+  width: 50%;
+  margin-inline: auto;
+}
+.quarter-width {
+  width: 25%;
+  margin-inline: auto;
 }

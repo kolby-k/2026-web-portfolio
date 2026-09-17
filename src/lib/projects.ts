@@ -13,6 +13,6 @@ export function getProjectRowType(project: ActivityItemSimple): string {
   return " - ";
 }
 
-export function getProjectListByType(type: ActivityType) {
+export function getProjectListByType(type: ActivityType): ActivityItemSimple[] {
   return [...PROJECTS_SIMPLE].filter((project) => project.type === type);
 }

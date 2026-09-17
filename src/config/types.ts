@@ -3,6 +3,7 @@
 type ActivityBase = {
   id: string;
   title: string;
+  timelineId?: string; // associated timeline
   slug: string; // internal url of project article
   focus: ActivityFocusType[];
   shortDescription: string; // under 20 words.
@@ -14,12 +15,12 @@ type ActivityBase = {
     urls: ActivityURL[] | null;
     content: ArticleContent[];
   };
+  thumbnail: string;
 };
 
 // Activities are 'projects' I want to showcase grouped by a type
 export type ActivityWork = ActivityBase & {
   type: "work";
-  roleId: string;
 };
 export type ActivityDeployed = ActivityBase & {
   type: "deployed";
@@ -78,11 +79,20 @@ export type TimelineItemEducation = TimelineItemBase & {
   outcome:
     | "Bachelor of Business Administration - Economics"
     | "Certificate"
-    | null;
+    | "Micro-Credential";
+};
+export type TimelineItemProject = TimelineItemBase & {
+  type: "project";
+  projectId: string;
 };
 
 // list of items to render on a timleline
-export type TimelineItem = TimelineItemWork | TimelineItemEducation;
+export type TimelineItem =
+  | TimelineItemWork
+  | TimelineItemEducation
+  | TimelineItemProject;
+
+export type TimelineType = TimelineItem["type"];
 
 // hyperlink to a projects source code, project url, etc.
 export type ActivityURL = {
@@ -105,7 +115,8 @@ export type ActivityFocusType =
   | "API integrations"
   | "software design"
   | "data processing"
-  | "data integrity";
+  | "data integrity"
+  | "application deployment";
 
 export type API =
   | "Microsoft Graph API"

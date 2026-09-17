@@ -2,6 +2,7 @@
   text-decoration: none;
   font-weight: 600;
   cursor: pointer;
+  position: relative;
 }
 .customLinkBase:hover {
   text-decoration: underline;
@@ -35,4 +36,15 @@
   text-decoration: underline;
   text-underline-offset: 4px !important;
   color: var(--text);
+}
+.externalIcon {
+  position: absolute;
+  top: 25%;
+  right: -8px;
+  transform: translate(50%, -50%);
+  font-size: 0.75rem;
+  opacity: 0.8;
+}
+.customLinkBase:hover .externalIcon {
+  opacity: 1;
 }

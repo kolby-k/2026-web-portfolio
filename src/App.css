@@ -11,6 +11,12 @@
 .main-heading {
   color: var(--text-highlight);
   font-weight: 600;
+  font-size: 1.4rem;
+}
+.sub-heading {
+  color: var(--text);
+  font-weight: 500;
+  font-size: 1.3rem;
 }
 .main-text {
   font-size: 1rem;
@@ -75,4 +81,10 @@
 .custom_tag_sm {
   font-size: 0.9rem;
   min-height: 1rem;
+}
+
+.custom_tag_secondary {
+  color: var(--green-badge-text);
+  background-color: var(--green-badge-bg);
+  border-color: var(--green-badge-border);
 }

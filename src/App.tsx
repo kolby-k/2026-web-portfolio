@@ -5,8 +5,11 @@ import NotFound from "./pages/NotFound";
 import Project from "./pages/projects/Project";
 import AppLayout from "./pages/AppLayout";
 import Vault from "./pages/vault/Vault";
+import ScrollHandler from "./config/ScrollHandler";
 
 function App() {
+  ScrollHandler();
+
   return (
     <Routes>
       <Route element={<AppLayout />}>

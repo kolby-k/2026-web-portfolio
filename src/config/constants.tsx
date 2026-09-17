@@ -1,13 +1,18 @@
 import type { ActivityItem, ActivityItemSimple, TimelineItem } from "./types";
+import EvolveBannerImage from "../assets/evolve-home.png";
+import SummarizeBannerImage from "../assets/summarizer-home.png";
+import PlaceholderBannerImage from "../assets/placeholder.png";
+import EvolveThumbnail from "../assets/evolve-card-thumbnail.png";
+import SummarizerBannerImage from "../assets/summarizer-card-thumbnail.png";
 
 // all ActivityItem properties
 export const PROJECTS_DETAILED: ActivityItem[] = [
   {
     id: "1",
-    title: "Automated Teams Meeting Summaries",
+    title: "Automated Meeting Summaries",
     slug: "ms-meeting-api",
     type: "work",
-    roleId: "1",
+    timelineId: "1",
     focus: ["backend development", "API integrations", "workflow automation"],
     shortDescription:
       "Keeps Zoho CRM up to date with summaries and attendance from over 200 Teams meetings each month.",
@@ -20,8 +25,9 @@ export const PROJECTS_DETAILED: ActivityItem[] = [
       tools: ["Zoho CRM", "Zoho Catalyst", "Zoho Flow"],
       database: "Zoho Catalyst Data Store",
     },
+    thumbnail: PlaceholderBannerImage,
     article: {
-      bannerImage: "",
+      bannerImage: PlaceholderBannerImage,
       fullDescription:
         "I built an integration that turns Microsoft Teams meeting transcripts and attendance data into concise summaries and record updates in Zoho CRM. The automation processes over 200 meetings per month, reducing manual follow-up work and keeping meeting records more consistent.",
       urls: null,
@@ -79,9 +85,10 @@ export const PROJECTS_DETAILED: ActivityItem[] = [
   },
   {
     id: "2",
-    title: "Evolve Workout Tracker",
+    title: "iOS Workout Tracker App",
     slug: "evolve-workout-tracker",
     type: "deployed",
+    timelineId: "9",
     longDescription: "Evolve is xyz",
     urls: [
       {
@@ -93,7 +100,7 @@ export const PROJECTS_DETAILED: ActivityItem[] = [
         url: "https://apps.apple.com/us/app/evolve-workout-tracker/id6738889804",
       },
     ],
-    focus: ["backend development", "frontend development", "software design"],
+    focus: ["backend development", "software design", "application deployment"],
     shortDescription: "Workout tracking mobile app for iOS.",
     year: "2025",
     technology: {
@@ -103,8 +110,9 @@ export const PROJECTS_DETAILED: ActivityItem[] = [
       tools: ["Expo"],
       database: "PostgreSQL",
     },
+    thumbnail: EvolveBannerImage,
     article: {
-      bannerImage: "",
+      bannerImage: EvolveThumbnail,
       fullDescription: "Long description: TODO",
       urls: [
         {
@@ -131,7 +139,7 @@ export const PROJECTS_DETAILED: ActivityItem[] = [
   },
   {
     id: "3",
-    title: "Summarizer",
+    title: "Summarizer Web App",
     slug: "summarizer-app",
     type: "hobby",
     longDescription:
@@ -147,8 +155,9 @@ export const PROJECTS_DETAILED: ActivityItem[] = [
       tools: ["Google Oauth"],
       database: "Redis",
     },
+    thumbnail: SummarizeBannerImage,
     article: {
-      bannerImage: "",
+      bannerImage: SummarizerBannerImage,
       fullDescription: "Long description: TODO",
       urls: [
         {
@@ -181,8 +190,9 @@ export const TIMELINE_ITEMS: TimelineItem[] = [
   {
     id: "1",
     title: "Data Analyst",
-    description: "Manage databases, pipelines, and backend processes.",
-    startDate: "2022-10-01",
+    description:
+      "Integrate and managing data pipelines, reporting, and backend processes including workflow automations.",
+    startDate: "2022-10-02",
     endDate: null,
     type: "work",
     company: "Business Link Alberta",
@@ -190,10 +200,98 @@ export const TIMELINE_ITEMS: TimelineItem[] = [
   {
     id: "2",
     title: "Business Support Officer",
-    description: "First point of contact for client inquiries.",
-    startDate: "2021-05-13",
-    endDate: "2022-10-01",
+    description:
+      "Served as the first point of contact for client inquiries, assisting with CRM systems, data management, and business processes.",
+    startDate: "2021-05-12",
+    endDate: "2022-10-02",
     type: "work",
     company: "Business Link Alberta",
   },
+  {
+    id: "3",
+    title: "Full-Stack Engineer Career Path",
+    description:
+      "Built full-stack web applications using front-end technologies, back-end services, and client-server integration.",
+    startDate: "2023-09-14",
+    endDate: "2024-06-17",
+    type: "education",
+    institution: "Codecademy",
+    about: "Professional Development",
+    outcome: "Certificate",
+  },
+  {
+    id: "4",
+    title: "Data Scientist - Analytics Specialist",
+    description:
+      "Applied data analytics, statistics, probability, and visualization to support informed decision-making.",
+    startDate: "2022-12-22",
+    endDate: "2023-04-23",
+    type: "education",
+    institution: "Codecademy",
+    about: "Professional Development",
+    outcome: "Certificate",
+  },
+  /*https://www.sait.ca/continuing-education/courses-and-certificates/courses/project-management-essentials */
+  {
+    id: "5",
+    title: "Project Management Essentials",
+    description:
+      "Learned to initiate, plan, execute, and close projects through effective leadership and communication.",
+    startDate: "2022-10-20",
+    endDate: "2023-01-08",
+    type: "education",
+    institution: "Southern Alberta Institute of Technology",
+    about: "Professional Development",
+    outcome: "Micro-Credential",
+  },
+  {
+    id: "6",
+    title: "Pure Fibre Technical Support",
+    description:
+      "Diagnosed and troubleshot a variety of internet-related issues virtually and in real time.",
+    startDate: "2019-03-02",
+    endDate: "2021-05-11",
+    type: "work",
+    company: "Telus",
+  },
+  {
+    id: "7",
+    title: "Bachelor of Business Administration - Economics",
+    description:
+      "Earned a Bachelor of Business Administration with a major in Economics from Thompson Rivers University.",
+    startDate: "2013-09-03",
+    endDate: "2018-04-28",
+    type: "education",
+    institution: "Thompson Rivers University",
+    about: "Post Secondary",
+    outcome: "Bachelor of Business Administration - Economics",
+  },
+  {
+    id: "9",
+    title: "Evolve Workout Tracker",
+    description:
+      "Developed an iOS app for tracking workouts and monitoring fitness progress.",
+    startDate: "2023-11-02",
+    endDate: "2025-03-20",
+    type: "project",
+    projectId: "2",
+  },
 ];
+
+/* 
+export const TIMELINE: TimelineItemProperties[] = [
+  
+  
+  {
+    date: "2016-03-12",
+    title: "Undergraduate Research Conference - Presenter",
+    description:
+      "Represented TRU's School of Business by presenting economic research on Russia's macroeconomic history, for an audience of students and professors.",
+    details: {
+      type: "Education",
+      endDate: null,
+    },
+  },
+];
+
+*/
