@@ -5,7 +5,7 @@ type ButtonProps = {
   handleClick?: () => void;
   title?: string;
   variant?: "Default" | "Ghost" | "Link" | "Icon" | "Brand";
-  size?: "sm" | "base" | "md" | "lg";
+  size?: "xs" | "sm" | "base" | "md" | "lg";
   baseStyle?: boolean;
   iconSide?: "left" | "right";
   children?: ReactNode;

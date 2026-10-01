@@ -4,14 +4,8 @@ import type {
   ActivityDeployed,
   ActivityWork,
   TimelineItem,
-  TimelineItemEducation,
-  TimelineItemWork,
 } from "../../../config/types";
-import {
-  getDeployedProjects,
-  getProviderLabel,
-  getWorkProjects,
-} from "../../../lib/timeline";
+import { getDeployedProjects, getWorkProjects } from "../../../lib/timeline";
 import { getTypeLabel } from "../../../lib/timeline";
 import styles from "../home.module.css";
 import { RxArrowRight } from "react-icons/rx";
@@ -20,9 +14,6 @@ type TimelineCardProps = {
   item: TimelineItem;
 };
 
-// TODO REMINDER:
-// - move evolve into timeline as project instead of
-// showing it in the hobby projects; treat more as a career item.
 function TimelineCard({ item }: TimelineCardProps) {
   let projects: ActivityWork[] | ActivityDeployed[] | undefined;
   if (item.type === "work") {
@@ -46,33 +37,35 @@ function TimelineCard({ item }: TimelineCardProps) {
   const showTag = timelineEndDate === "Present";
 
   return (
-    <div className={styles.timelineItem}>
-      <div className={styles.timelineDot}></div>
-      <div className={styles.timelineCard}>
+    <div className={`${styles.timelineItem}`}>
+      <div className={`${styles.timelineDot}`}></div>
+      <div className={`${styles.timelineCard} card-ui`}>
         {showTag && (
           <span className={styles.timelineCardTag}>
-            <Tag title="Current Role" variant="secondary" size="sm" />
+            <Tag title="Current Role" variant="secondary" size="xs" />
           </span>
-        )}
-
-        <p className={styles.timelineTypeLabel}>{getTypeLabel(item)}</p>
-        <p className={styles.timelineCardTitle}>{item.title}</p>
-
+        )}{" "}
+        <p
+          className={`muted-text font-sm upper-text ${showTag ? styles.timelineTypeLabels : ""}`}
+        >
+          {getTypeLabel(item)}
+        </p>
+        <p className={`sub-heading`}>{item.title}</p>
         <div className={styles.timelineCardDateContainer}>
-          <span className={styles.timelineCardDateCol}>
-            <p>Start</p>
-            <p>{timelineStartDate}</p>
+          <span>
+            <p className="muted-text font-xs">Start</p>
+            <p className="main-text">{timelineStartDate}</p>
           </span>
           <RxArrowRight />
-          <span className={styles.timelineCardDateCol}>
-            <p>End</p>
-            <p>{timelineEndDate}</p>
+          <span>
+            <p className="muted-text font-xs">End</p>
+            <p className="main-text">{timelineEndDate}</p>
           </span>
         </div>
-        <p className={styles.timelineCardDescription}>{item.description}</p>
+        <p className={"secondary-text"}>{item.description}</p>
         {!!projects && !!projects.length ? (
           <div className={styles.timelineProjectFeatures}>
-            <p className="info-label">
+            <p className="muted-text font-sm">
               {item.type === "work" ? "Related work" : "View project"}
             </p>
             {projects.map((project, idx) => {
@@ -84,7 +77,6 @@ function TimelineCard({ item }: TimelineCardProps) {
                   type="internal"
                   to={`/projects/${project.slug}`}
                   variant="link"
-                  showIcon
                 >
                   {isLast ? "" : ","}
                 </CustomLink>
@@ -92,9 +84,7 @@ function TimelineCard({ item }: TimelineCardProps) {
             })}
           </div>
         ) : (
-          <p className={styles.timelineProviderText}>
-            {getProviderLabel(item as TimelineItemWork | TimelineItemEducation)}
-          </p>
+          <br />
         )}
       </div>
     </div>

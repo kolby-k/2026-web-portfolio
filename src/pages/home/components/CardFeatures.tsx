@@ -10,9 +10,9 @@ type CardFeaturesProps = {
 function CardFeatures({ heading, subHeading, list }: CardFeaturesProps) {
   return (
     <div className={styles.cardFeatureWrapper}>
-      <div className={styles.cardTitleWrapper}>
+      <div className={styles.textContainer}>
         <h2 className="main-heading">{heading}</h2>
-        <p className="info-label">{subHeading}</p>
+        <p className="secondary-text">{subHeading}</p>
       </div>
       <div className={styles.cardListWrapper}>
         {list.map((item) => {

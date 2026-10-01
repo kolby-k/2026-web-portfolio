@@ -1,9 +1,8 @@
-import { useNavigate } from "react-router-dom";
-import Button from "../../../components/Button";
 import type { ActivityItemSimple } from "../../../config/types";
 import { proper } from "../../../utils";
 import styles from "../home.module.css";
-
+import CustomLink from "../../../components/CustomLink";
+import { RxArrowTopRight } from "react-icons/rx";
 type ActivityCardProps = {
   activity: ActivityItemSimple;
 };
@@ -13,22 +12,19 @@ function ActivityCard({ activity }: ActivityCardProps) {
 
   const mainFocus = focus[0];
 
-  const nav = useNavigate();
-
   return (
-    <div className={styles.cardWrapper}>
-      <div className={styles.cardContent}>
-        <p className={styles.cardEyebrow}>{proper(mainFocus)}</p>
+    <div className={`${styles.cardWrapper} card-ui`}>
+      <CustomLink type="internal" to={`/projects/${slug}`} variant="wrapper">
+        <div className={styles.cardContent}>
+          <p className={`muted-text upper-text font-xs`}>{proper(mainFocus)}</p>
 
-        <p className={styles.cardTitle}>{title}</p>
-        <p className={styles.cardDescription}>{shortDescription}</p>
-        <Button
-          variant="Ghost"
-          size="sm"
-          title={"View Project"}
-          handleClick={() => nav(`/projects/${slug}`)}
-        />
-      </div>
+          <p className={`section-title ${styles.cardTitle}`}>
+            {title} <RxArrowTopRight className={styles.cardIcon} />
+          </p>
+
+          <p className={`secondary-text`}>{shortDescription}</p>
+        </div>
+      </CustomLink>
     </div>
   );
 }

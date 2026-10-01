@@ -6,6 +6,7 @@ import Project from "./pages/projects/Project";
 import AppLayout from "./pages/AppLayout";
 import Vault from "./pages/vault/Vault";
 import ScrollHandler from "./config/ScrollHandler";
+import Secret from "./pages/secret/Secret";
 
 function App() {
   ScrollHandler();
@@ -15,6 +16,7 @@ function App() {
       <Route element={<AppLayout />}>
         <Route index element={<Home />} />
         <Route path="vault" element={<Vault />} />
+        <Route path="secret" element={<Secret />} />
 
         <Route element={<ProjectLayout />}>
           <Route path="projects/:projectSlug" element={<Project />} />

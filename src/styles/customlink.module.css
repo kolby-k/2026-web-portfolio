@@ -3,6 +3,9 @@
   font-weight: 600;
   cursor: pointer;
   position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
 }
 .customLinkBase:hover {
   text-decoration: underline;
@@ -24,6 +27,13 @@
 .customLink_default {
   color: var(--text-secondary);
 }
+.customLink_muted {
+  color: var(--text-muted);
+  font-weight: 500;
+}
+.customLink_muted:hover {
+  color: var(--text-secondary);
+}
 .customLink_link {
   color: var(--text-link);
 }
@@ -31,20 +41,35 @@
   text-decoration: underline;
   font-weight: 500;
 }
-
+.customLink_icon {
+  color: var(--primary);
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.customLink_icon:hover {
+  color: var(--text-link);
+}
 .customLink_active {
   text-decoration: underline;
   text-underline-offset: 4px !important;
   color: var(--text);
 }
 .externalIcon {
-  position: absolute;
-  top: 25%;
-  right: -8px;
-  transform: translate(50%, -50%);
-  font-size: 0.75rem;
+  margin-bottom: 8px;
+  font-size: 0.7rem;
   opacity: 0.8;
 }
 .customLinkBase:hover .externalIcon {
   opacity: 1;
+}
+
+.customLink_wrapper {
+  color: var(--primary);
+  cursor: pointer;
+}
+.customLink_wrapper:hover {
+  text-decoration: none;
 }

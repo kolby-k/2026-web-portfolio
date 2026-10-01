@@ -10,13 +10,17 @@ function Timeline() {
     <div id="Timeline" className={styles.timelineOutterWrapper}>
       <div className={styles.textContainer}>
         <h2 className="main-heading">Experience & Education</h2>
-        <p className="info-label">My work history and education.</p>
+        <p className="secondary-text">My work history and education.</p>
       </div>
       <div className={styles.timelineContainer}>
         {timelineList.map(({ year, items }) => {
           return (
             <div key={`timeline-${year}`} className={styles.timelineGroup}>
-              <h4 className={styles.timelineGroupHeading}>{year}</h4>
+              <p
+                className={`${styles.timelineGroupHeading} muted-text font-sm`}
+              >
+                {year}
+              </p>
               {items &&
                 items.map((item) => (
                   <TimelineCard key={`timeline-item-${item.id}`} item={item} />

@@ -2,6 +2,8 @@ import styles from "./project.module.css";
 import { Link, useParams } from "react-router-dom";
 import { PROJECTS_DETAILED } from "../../config/constants";
 import Tag from "../../components/Tag";
+import CustomLink from "../../components/CustomLink";
+import { RxArrowLeft } from "react-icons/rx";
 
 function Project() {
   const { projectSlug } = useParams();
@@ -13,7 +15,7 @@ function Project() {
   if (!project) {
     return (
       <div className={styles.content}>
-        <p className="info-label">Project "{projectSlug}" not found</p>
+        <p className="muted-text">Project "{projectSlug}" not found</p>
         <Link to={"/"}>Go Home</Link>
       </div>
     );
@@ -21,45 +23,69 @@ function Project() {
 
   return (
     <div className={styles.content}>
+      <span className={styles.homeButton}>
+        <CustomLink type="internal" to="/" variant="muted" size="base">
+          <RxArrowLeft /> Home
+        </CustomLink>
+      </span>
       <div className={`${styles.header}`}>
-        <span className={`${styles.headerProjectTypeTag}`}>
-          <Tag title={project.type} variant="primary" size="sm" />
+        <span className={`${styles.headerTitleSection}`}>
+          <h1 className="main-heading">{project.title}</h1>
+          <Tag title={`${project.type} Project`} variant="primary" size="sm" />
         </span>
-        <h1>{project.title}</h1>
+        <span className={styles.projectHeaderTagContainer}>
+          {project.focus.map((f) => (
+            <Tag key={`${project.id}-${f}`} title={f} size="xs" />
+          ))}
+        </span>
         <div className={styles.projectHeaderDescription}>
-          <p>About</p>
-          <p>{project.shortDescription}</p>
-          <span>
-            {project.focus.map((f) => (
-              <Tag key={`${project.id}-${f}`} title={f} size="sm" />
-            ))}
-          </span>
+          <figure className={styles.bannerImageContainer}>
+            <img
+              src={project.article.bannerImage}
+              alt="" // Add descriptive alt text if the image conveys information.
+              className={styles.bannerImage}
+            />
+            <figcaption className={`font-sm ${styles.imageDescription}`}>
+              {project.shortDescription}
+            </figcaption>
+          </figure>
         </div>
       </div>
-
+      <hr className="quarter-width" />
       <div className={styles.introAndTechSection}>
         <div className={styles.introSection}>
-          <h2>Introduction</h2>
-          {project.article.fullDescription}
+          <h3 className="main-heading ">Overview</h3>
+          <p className="secondary-text">{project.article.fullDescription}</p>
         </div>
         <div className={styles.techSection}>
-          <h2>Technology</h2>
-          <p className="main-text">
-            Environment: {project.technology?.environment}
-          </p>
-          <p className="main-text">
-            API: {project.technology?.apis?.join(", ")}
-          </p>
-          <p className="main-text">Database: {project.technology?.database}</p>
-          <p className="main-text">
-            Languages: {project.technology?.languages?.join(", ")}
-          </p>
-          <p className="main-text">
-            Libraries: {project.technology?.libraries?.join(", ")}
-          </p>
-          <p className="main-text">
-            Tools: {project.technology?.tools?.join(", ")}
-          </p>
+          <h3 className="main-heading font-xl">Technologies</h3>
+          <span className={styles.techTable}>
+            <p className="main-text strong-text">Languages</p>
+            <p className="secondary-text">
+              {project.technology?.languages?.join(", ")}
+            </p>
+
+            <p className="main-text strong-text">APIs</p>
+            <p className="secondary-text">
+              {project.technology?.apis?.join(", ")}
+            </p>
+
+            <p className="main-text strong-text">Libraries</p>
+            <p className="secondary-text">
+              {project.technology?.libraries?.join(", ")}
+            </p>
+
+            <p className="main-text strong-text">Integrations</p>
+            <p className="secondary-text">
+              {project.technology?.integrations?.join(", ")}
+            </p>
+
+            <p className="main-text strong-text">Database</p>
+            <p className="secondary-text">{project.technology?.database}</p>
+
+            <p className="main-text strong-text">Environment</p>
+            <p className="secondary-text">{project.technology?.environment}</p>
+          </span>
         </div>
       </div>
 
@@ -70,13 +96,15 @@ function Project() {
           if (type === "text") {
             return (
               <div key={`${type}-${idx}`} className={styles.contentBlock}>
-                <h2 className={styles.textHeading}>{section.heading} </h2>
+                <h3 className={`${styles.textHeading} font-xl`}>
+                  {section.heading}
+                </h3>
                 <div className={styles.paragraph}>
                   {section.paragraphs.map((text, idx) => {
                     return (
                       <p
                         key={`${section.heading}-${idx}`}
-                        className={"main-text"}
+                        className={"article-text"}
                       >
                         {text}
                       </p>

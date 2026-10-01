@@ -37,13 +37,13 @@ export function getDeployedProjects(
 
 export function getTypeLabel(item: TimelineItem): string {
   if (item.type === "work") {
-    return "Career";
+    return `Career ・ ${item.company}`;
   } else if (item.type === "project") {
-    return "Deployed app";
+    return `Deployed Application ・ ${item.platform}`;
   } else if (item.type === "education") {
     return item.outcome === "Certificate" || item.outcome === "Micro-Credential"
-      ? item.outcome
-      : "Education";
+      ? `${item.outcome} ・ ${item.institution}`
+      : `Education ・ ${item.institution}`;
   }
 
   return "";

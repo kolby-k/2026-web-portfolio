@@ -4,10 +4,10 @@ import { RxExternalLink } from "react-icons/rx";
 import type { ReactNode } from "react";
 
 type BaseLinkProps = {
-  title: string;
+  title?: string;
   showIcon?: boolean;
   size?: "sm" | "base" | "md" | "lg";
-  variant?: "default" | "link";
+  variant?: "default" | "link" | "icon" | "wrapper" | "muted";
   children?: ReactNode;
 };
 type InternalLinkProps = BaseLinkProps & {
@@ -40,6 +40,7 @@ function CustomLink(props: CustomLinkProps) {
             ${styles[`customLink_${variant}`]}`}
         href={href}
         title={title}
+        target="_blank"
       >
         {title}
         {children}
@@ -61,10 +62,11 @@ function CustomLink(props: CustomLinkProps) {
         className={({ isActive }) => {
           const seg = location.pathname + location.hash;
           const active = isActive && seg === to;
+          const minimalUI = variant === "wrapper";
           return `${styles.customLinkBase} 
             ${styles[`fontSize_${size}`]}
             ${styles[`customLink_${variant}`]}
-            ${active ? styles.customLink_active : ""}`;
+            ${active && !minimalUI ? styles.customLink_active : ""}`;
         }}
         to={to}
         title={title}

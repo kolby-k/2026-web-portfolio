@@ -3,7 +3,7 @@ import { proper } from "../utils";
 type TagProps = {
   title: string;
   variant?: "default" | "primary" | "secondary" | "theme";
-  size?: "sm" | "base" | "md" | "lg";
+  size?: "xs" | "sm" | "base" | "md" | "lg";
 };
 function Tag({ title, variant = "default", size = "base" }: TagProps) {
   return (

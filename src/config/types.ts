@@ -12,9 +12,9 @@ type ActivityBase = {
   article: {
     bannerImage: string;
     fullDescription: string;
-    urls: ActivityURL[] | null;
     content: ArticleContent[];
   };
+  urls: ActivityURL[] | null;
   thumbnail: string;
 };
 
@@ -24,12 +24,9 @@ export type ActivityWork = ActivityBase & {
 };
 export type ActivityDeployed = ActivityBase & {
   type: "deployed";
-  longDescription: string;
-  urls: ActivityURL[];
 };
 export type ActivityHobby = ActivityBase & {
   type: "hobby";
-  longDescription: string;
 };
 export type ActivityItem = ActivityWork | ActivityDeployed | ActivityHobby;
 // remove 'article' to keep lightweight list of items for timeline rendering
@@ -83,6 +80,7 @@ export type TimelineItemEducation = TimelineItemBase & {
 };
 export type TimelineItemProject = TimelineItemBase & {
   type: "project";
+  platform: "iOS Mobile App";
   projectId: string;
 };
 
@@ -105,7 +103,7 @@ export type Technologies = {
   languages?: Languages[];
   apis?: API[];
   libraries?: Libraries[];
-  tools?: Tools[];
+  integrations?: Integrations[];
   database?: Database;
 };
 export type ActivityFocusType =
@@ -115,7 +113,8 @@ export type ActivityFocusType =
   | "API integrations"
   | "software design"
   | "data processing"
-  | "data integrity"
+  | "data visualization"
+  | "data integration"
   | "application deployment";
 
 export type API =
@@ -127,15 +126,17 @@ export type API =
   | "DOM API";
 export type Languages = "JavaScript" | "TypeScript" | "SQL" | "Deluge";
 export type Environment = "Node.js" | "Zoho Platform";
-export type Tools =
+export type Integrations =
   | "Microsoft Excel"
   | "Zoho CRM"
   | "Zoho Flow"
   | "Zoho Catalyst"
   | "Zoho Forms"
+  | "Zoho Analytics"
   | "Expo"
   | "Google Oauth";
 export type Libraries =
+  | "Express"
   | "Redux Toolkit"
   | "Apple Storekit"
   | "@azure/msal-node"

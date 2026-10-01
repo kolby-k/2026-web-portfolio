@@ -20,7 +20,7 @@ function ScrollHandler() {
 
     window.scrollTo({
       top: 0,
-      behavior: "smooth",
+      behavior: "instant",
     });
   }, [pathname, hash]);
 
