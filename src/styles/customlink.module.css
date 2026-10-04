@@ -69,6 +69,8 @@
 .customLink_wrapper {
   color: var(--primary);
   cursor: pointer;
+
+  height: 100%;
 }
 .customLink_wrapper:hover {
   text-decoration: none;

@@ -13,7 +13,7 @@ function ActivityCard({ activity }: ActivityCardProps) {
   const mainFocus = focus[0];
 
   return (
-    <div className={`${styles.cardWrapper} card-ui`}>
+    <div className={`card-ui`}>
       <CustomLink type="internal" to={`/projects/${slug}`} variant="wrapper">
         <div className={styles.cardContent}>
           <p className={`muted-text upper-text font-xs`}>{proper(mainFocus)}</p>

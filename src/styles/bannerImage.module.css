@@ -1,0 +1,181 @@
+.bannerImageContainer {
+  position: relative;
+  width: min(94svw, 800px);
+  aspect-ratio: 16 / 8;
+  margin: auto;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.imageButton {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: zoom-in;
+}
+
+.bannerImage {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  mask-image: linear-gradient(to bottom, #000 70%, transparent 90%);
+  cursor: pointer;
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100dvh;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 5rem 1rem 1.5rem;
+  border: 0;
+  background: transparent;
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+
+.lightbox[open] {
+  display: flex;
+  flex-direction: column;
+}
+
+.lightbox::backdrop {
+  background: radial-gradient(var(--surface) 70%, var(--surface-clear));
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.expandedFigure {
+  flex-shrink: 0;
+  width: 100%;
+  max-width: 1200px;
+  min-width: 0;
+  margin: auto;
+}
+
+.imageViewport {
+  width: 100%;
+  border-radius: var(--radius);
+}
+
+.fullImage {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 70dvh;
+  margin: 0 auto;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+}
+
+/* Caption stays below the image, in normal document flow. */
+.caption {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: var(--radius-lg);
+  background: color-mix(in srgb, var(--surface-hover) 85%, transparent);
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.imageTitle {
+  position: absolute;
+  top: 4rem;
+  transform: translateY(100%);
+}
+
+.imageDescription {
+  padding: 0.5rem;
+  color: var(--text-secondary);
+  background: color-mix(in srgb, var(--surface-hover) 85%, transparent);
+  border-radius: var(--radius-lg);
+  pointer-events: none;
+  display: block;
+  color: var(--text-secondary);
+}
+.closeButton {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+}
+.closeButton:focus-visible,
+.imageViewport:focus-visible {
+  outline: none;
+}
+
+.imageCanvas {
+  position: relative;
+  width: 100%;
+}
+
+/* Mobile keeps its existing swipe behavior. */
+.zoomToggle {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .imageViewport {
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+  }
+
+  .fullImage {
+    width: 200%;
+    max-width: none;
+    height: auto;
+    max-height: none;
+    margin: 0;
+  }
+}
+
+@media (min-width: 641px) {
+  .imageViewport {
+    max-height: 70dvh;
+    overflow: auto;
+    overscroll-behavior: contain;
+  }
+
+  .zoomToggle {
+    display: block;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border: 0;
+    border-radius: var(--radius);
+    background: transparent;
+    cursor: zoom-in;
+  }
+
+  .zoomToggle:focus-visible {
+    outline: none;
+  }
+
+  .imageViewport[data-zoomed="true"] .imageCanvas {
+    width: 200%;
+  }
+
+  .imageViewport[data-zoomed="true"] .fullImage {
+    width: 100%;
+    height: auto;
+    max-width: none;
+    max-height: none;
+    margin: 0;
+  }
+
+  .imageViewport[data-zoomed="true"] .zoomToggle {
+    cursor: zoom-out;
+  }
+}

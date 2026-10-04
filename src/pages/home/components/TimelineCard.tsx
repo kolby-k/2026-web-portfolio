@@ -46,7 +46,7 @@ function TimelineCard({ item }: TimelineCardProps) {
           </span>
         )}{" "}
         <p
-          className={`muted-text font-sm upper-text ${showTag ? styles.timelineTypeLabels : ""}`}
+          className={`muted-text font-xs upper-text ${showTag ? styles.timelineTypeLabels : ""}`}
         >
           {getTypeLabel(item)}
         </p>

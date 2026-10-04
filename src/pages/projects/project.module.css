@@ -46,36 +46,6 @@
 
   /* border: 1px solid blue; */
 }
-.bannerImageContainer {
-  position: relative;
-  width: min(94svw, 800px);
-  aspect-ratio: 16 / 8;
-  margin: auto;
-  border-radius: var(--radius);
-  overflow: hidden;
-  border: 1px solid var(--border);
-}
-
-.bannerImage {
-  display: block;
-  width: 100%;
-  height: auto;
-  mask-image: linear-gradient(to bottom, var(--bg) 70%, transparent 90%);
-}
-
-.imageDescription {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-
-  margin: 0;
-  padding: 0.5rem;
-  color: var(--text-secondary);
-
-  background: color-mix(in srgb, var(--surface-hover) 85%, transparent);
-}
-
 .projectHeaderTagContainer {
   display: flex;
   flex-wrap: wrap;
@@ -92,9 +62,9 @@
   gap: 2rem 4rem;
   min-width: 50svw;
   margin-top: 1.25rem;
-
+  margin-inline: 1rem;
   background: linear-gradient(var(--surface-hover), var(--surface));
-  padding: 1rem;
+  padding: 0.75rem 0.5rem;
   border-radius: var(--radius);
   border: 1px solid var(--border-surface);
 }
@@ -119,8 +89,9 @@
 }
 
 .contentBlock {
-  padding: 1rem 0.5rem;
+  padding: 1rem 0.75rem;
   min-width: 50svw;
+  margin-bottom: 1rem;
 }
 .textHeading {
   line-height: 1.25;

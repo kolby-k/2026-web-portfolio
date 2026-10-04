@@ -6,17 +6,19 @@ import EvolveThumbnail from "../assets/evolve-card-thumbnail.png";
 import SummarizerBannerImage from "../assets/summarizer-card-thumbnail.png";
 import DeveloperToolkitBannerImage from "../assets/developer-toolkit.png";
 import DeveloperToolkitThumbnail from "../assets/dev-toolkit-card-thumbnail.png";
+import MeetingAutomationBanner from "../assets/MeetingAutomationBanner.png";
+
 // all ActivityItem properties
 export const PROJECTS_DETAILED: ActivityItem[] = [
   {
     id: "1",
-    title: "Automated Meeting Summaries",
+    title: "CRM Meetings Automation",
     slug: "ms-meeting-api",
     type: "work",
     timelineId: "1",
     focus: ["backend development", "API integrations", "workflow automation"],
     shortDescription:
-      "Keeps Zoho CRM up to date with summaries and attendance from over 200 Teams meetings each month.",
+      "Automated business workflow to keep Zoho CRM updated with meeting attendance, summaries, topics, and duration.",
     year: "2025",
     technology: {
       environment: "Node.js",
@@ -29,16 +31,16 @@ export const PROJECTS_DETAILED: ActivityItem[] = [
     thumbnail: PlaceholderBannerImage,
     urls: null,
     article: {
-      bannerImage: PlaceholderBannerImage,
+      bannerImage: MeetingAutomationBanner,
       fullDescription:
-        "I built an integration that turns Microsoft Teams meeting transcripts and attendance data into concise summaries and record updates in Zoho CRM. The automation processes over 200 meetings per month, reducing manual follow-up work and keeping meeting records more consistent.",
+        "I built an integration that uses Microsoft Teams transcripts and attendance reports to automate meeting summaries and updates in Zoho CRM. It now processes more than 250 meetings per month, handling work that staff previously completed manually.",
       content: [
         {
           type: "text",
-          heading: "The Need",
+          heading: "The Problem",
           paragraphs: [
-            "After Microsoft Teams meetings, staff manually wrote meeting notes and updated fields in Zoho CRM. These updates varied from person to person and were sometimes forgotten, leaving incomplete records.",
-            "I was tasked with automating this work so the CRM would consistently capture what was discussed, along with meeting status and duration based on attendance data.",
+            "After Microsoft Teams meetings, staff were responsible for writing meeting notes and updating fields in a CRM. The level of detail varied from person to person, and updates were sometimes late or missed, leaving incomplete records.",
+            "My task was to make this process more consistent through automation by capturing what was discussed, recording meeting status and duration, and reducing the manual work required to keep the CRM current.",
           ],
           order: 1,
         },
@@ -46,29 +48,34 @@ export const PROJECTS_DETAILED: ActivityItem[] = [
           type: "text",
           heading: "Planning the Integration",
           paragraphs: [
-            "Because the organization already used Microsoft Teams and Zoho, I designed the integration around those integrations. I explored Microsoft Graph for access to transcripts and attendance reports, and Zoho Catalyst for hosting a serverless Node.js API and storing subscription data.",
-            "Microsoft Graph subscriptions allow an application to receive notifications when meeting data becomes available. I planned the API to receive these notifications and place the processing work in a job queue.",
-            "Separating incoming requests from processing allowed the API to respond quickly while queued jobs handled the remaining work. It also made failed jobs easier to identify, debug, and retry.",
+            "The workflow needed access to two types of meeting data: transcripts for summaries and discussion topics, and attendance reports for meeting status and duration. Because the organization already used Microsoft Teams and Zoho, I designed the integration around those tools.",
+            "Meeting timing was another important consideration. A meeting could finish earlier or later than scheduled, so the scheduled end time was not a reliable trigger for retrieving its data.",
+            "Microsoft Graph provided access to the data, while its subscriptions offered a way to trigger processing through event notifications. Using these notifications would reduce the need to repeatedly check for updates through polling and allow the integration to respond to relevant meeting events.",
+            "One challenge was that Microsoft Graph requires prompt webhook responses, while downloading and processing meeting data can take longer. To address this, I designed two separate functions connected by a job queue. The HTTP function exposes an API webhook to receive, validate, and respond to incoming requests, then queues the work for a background processing function. This allows the webhook to respond quickly while longer tasks run separately and makes individual jobs easier to test, investigate, and retry.",
+            "I chose Zoho Catalyst to host both functions. It provided a serverless environment for building the API webhook and background processing logic in Node.js, along with a built-in database, Catalyst Data Store, for storing and managing subscription details.",
           ],
           order: 2,
         },
         {
           type: "text",
-          heading: "Managing Subscriptions & Meeting Data",
+          heading: "Turning Meeting Data into CRM Updates",
           paragraphs: [
-            "I built two serverless functions in Zoho Catalyst: an HTTP function to receive requests and a job processing function connected to a queue. A Deluge script in Zoho CRM calls the API to request new Microsoft Graph subscriptions.",
-            "The HTTP function has endpoints for subscription requests, meeting data notifications, and subscription lifecycle events, such as requests to reauthorize access. It validates incoming requests and adds jobs to the queue.",
-            "The job processing function uses @azure/msal-node to authenticate with Microsoft Graph. It creates, reauthorizes, and deletes subscriptions, and downloads transcripts and attendance reports to pass to Zoho Flow.",
+            "Managing Graph subscriptions and retrieving meeting data was only part of the solution. The retrieved data also needed to be converted into summaries and field values suitable for the CRM.",
+            "I chose Zoho Flow for this stage because it made processing steps straightforward to configure, with a built-in CRM connection to simplify record updates. Its visual interface helped me investigate failures while giving staff without programming experience a clearer view of how the automation worked.",
+            "Because attendance reports and transcripts could become available at different times, I designed independent workflows so each could run when its data was ready. The attendance workflow updates the meeting’s status and duration in Zoho CRM. The transcript workflow uses OpenAI to generate a summary and extract the topics discussed, then add those results to the CRM meeting record.",
+            "Separating responsibilities between Catalyst and Flow also made failures easier to manage. Catalyst handled Microsoft Graph subscriptions and data retrieval, while Flow handled OpenAI processing and CRM updates. If OpenAI was temporarily unavailable, I could retry the transcript workflow in Flow without repeating the earlier data retrieval.",
           ],
           order: 3,
         },
         {
           type: "text",
-          heading: "Turning Meeting Data into CRM Updates",
+          heading: "Implementation and Development Details",
           paragraphs: [
-            "I created two workflows in Zoho Flow, each with a webhook to receive data from the processing function. One handles attendance reports and updates the CRM meeting status and duration.",
-            "The other handles transcripts, using OpenAI to generate a meeting summary and extract information such as the topics discussed. The workflow then updates the CRM with the results.",
-            "Zoho Flow provided built-in CRM connections and visibility into each workflow's progress, making it easier to investigate and retry failures during the CRM update process.",
+            "With the design in place, I used Zoho Catalyst to host two serverless Node.js functions: an HTTP webhook function to receive and validate requests, and a processing function to handle queued jobs.",
+            "Because upcoming meeting details were already stored in Zoho CRM, I wrote a Deluge script that runs fifteen minutes before a meeting’s scheduled start. It sends a POST request to the HTTP function to request a Microsoft Graph subscription for that meeting.",
+            "The HTTP function validates the request and queues a job. The processing function then creates the subscription and stores its details in Catalyst Data Store so the application can track and manage its lifecycle.",
+            "The same queue handles subscription maintenance. When Microsoft Graph sends a lifecycle notification requiring action, the HTTP function queues the necessary reauthorization or renewal work to keep notifications active.",
+            "Meeting notifications trigger jobs to retrieve the transcripts and attendance reports. Once retrieval is complete, the processing function deletes the subscription and sends the data to the appropriate Zoho Flow workflow through its webhook.",
           ],
           order: 4,
         },
@@ -76,8 +83,10 @@ export const PROJECTS_DETAILED: ActivityItem[] = [
           type: "text",
           heading: "The Outcome",
           paragraphs: [
-            "The automation now processes over 200 meetings per month, generating summaries and updating meeting statuses that staff previously entered manually.",
-            "We observed more consistent CRM records because meeting fields were populated through a standard process. Staff had summaries and attendance details available in the CRM, with less reliance on individual follow-up to keep records complete.",
+            "This integration now updates Zoho CRM automatically for more than 250 meetings each month, providing richer meeting summaries and reducing the time staff spend writing notes and entering details after meetings.",
+            "After introducing the workflow, the business observed more complete CRM records, and staff spent less time following up on missing updates. Capturing meeting information became part of a standard process, reducing reliance on individual staff members completing each update manually.",
+            "The CRM records themselves are also more useful. With summaries, discussion topics, meeting status, and duration available together, staff have a more consistent reference when reviewing previous interactions.",
+            "For managers, more current and consistent data makes meeting reports easier to interpret. There is less uncertainty about whether a gap in the report reflects a meeting that did not take place or an update that someone has not entered. This reduces the need to investigate missing information before using those reports.",
           ],
           order: 5,
         },
@@ -443,7 +452,7 @@ export const TIMELINE_ITEMS: TimelineItem[] = [
     startDate: "2022-10-02",
     endDate: null,
     type: "work",
-    company: "Business Link Alberta",
+    company: "Business Link",
   },
   {
     id: "2",
@@ -453,7 +462,7 @@ export const TIMELINE_ITEMS: TimelineItem[] = [
     startDate: "2021-05-12",
     endDate: "2022-10-02",
     type: "work",
-    company: "Business Link Alberta",
+    company: "Business Link",
   },
   {
     id: "3",

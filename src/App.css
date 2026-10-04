@@ -25,6 +25,7 @@
   border: 1px solid var(--border);
   color: var(--text);
   border-radius: var(--radius-md);
+  position: relative;
 }
 .card-ui:hover {
   background: linear-gradient(
@@ -108,7 +109,11 @@
   max-inline-size: 22ch;
   color: var(--text-highlight);
 }
-
+.page-heading {
+  font-size: 2.1rem;
+  color: var(--text);
+  font-weight: 700;
+}
 .main-heading {
   font-size: 1.9rem;
   color: var(--text);
@@ -119,6 +124,7 @@
   font-size: 1.5rem;
   color: var(--text);
   font-weight: 600;
+  line-height: 1.2;
 }
 .section-title {
   font-size: 1.2rem;
@@ -183,10 +189,14 @@
   font-size: 1.1rem;
 }
 .font-lg {
-  font-size: 1.2rem;
+  font-size: 1.25rem;
 }
 .font-xl {
-  font-size: 1.4rem;
+  font-size: 1.5rem;
+  line-height: 2;
+}
+.font-xxl {
+  font-size: 2rem;
   line-height: 2;
 }
 /* Effects */

@@ -4,6 +4,7 @@ import { PROJECTS_DETAILED } from "../../config/constants";
 import Tag from "../../components/Tag";
 import CustomLink from "../../components/CustomLink";
 import { RxArrowLeft } from "react-icons/rx";
+import BannerImage from "../../components/BannerImage";
 
 function Project() {
   const { projectSlug } = useParams();
@@ -30,7 +31,7 @@ function Project() {
       </span>
       <div className={`${styles.header}`}>
         <span className={`${styles.headerTitleSection}`}>
-          <h1 className="main-heading">{project.title}</h1>
+          <h1 className="page-heading">{project.title}</h1>
           <Tag title={`${project.type} Project`} variant="primary" size="sm" />
         </span>
         <span className={styles.projectHeaderTagContainer}>
@@ -38,23 +39,16 @@ function Project() {
             <Tag key={`${project.id}-${f}`} title={f} size="xs" />
           ))}
         </span>
-        <div className={styles.projectHeaderDescription}>
-          <figure className={styles.bannerImageContainer}>
-            <img
-              src={project.article.bannerImage}
-              alt="" // Add descriptive alt text if the image conveys information.
-              className={styles.bannerImage}
-            />
-            <figcaption className={`font-sm ${styles.imageDescription}`}>
-              {project.shortDescription}
-            </figcaption>
-          </figure>
-        </div>
+        <BannerImage
+          src={project.article.bannerImage}
+          title="Design Overview"
+          description={project.shortDescription}
+        />
       </div>
       <hr className="quarter-width" />
       <div className={styles.introAndTechSection}>
         <div className={styles.introSection}>
-          <h3 className="main-heading ">Overview</h3>
+          <h3 className="main-heading font-xl">Overview</h3>
           <p className="secondary-text">{project.article.fullDescription}</p>
         </div>
         <div className={styles.techSection}>
