@@ -1,21 +1,26 @@
 import { useRef, useState } from "react";
-import styles from "../styles/bannerImage.module.css";
+import styles from "../styles/expandableImage.module.css";
 import Button from "./Button";
 
-type BannerImageProps = {
+type ExpandableImageProps = {
   src: string;
   title: string;
   alt?: string;
   description?: string;
 };
 
-function BannerImage({ src, title, alt, description }: BannerImageProps) {
+function ExpandableImage({
+  src,
+  title,
+  alt,
+  description,
+}: ExpandableImageProps) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const [isZoomed, setIsZoomed] = useState(false);
 
   return (
     <>
-      <figure className={styles.bannerImageContainer}>
+      <figure className={styles.expandableImageContainer}>
         <button
           type="button"
           className={styles.imageButton}
@@ -23,7 +28,7 @@ function BannerImage({ src, title, alt, description }: BannerImageProps) {
           aria-label="View full image"
           aria-haspopup="dialog"
         >
-          <img src={src} alt={alt} className={styles.bannerImage} />
+          <img src={src} alt={alt} className={styles.expandableImage} />
         </button>
       </figure>
 
@@ -47,6 +52,10 @@ function BannerImage({ src, title, alt, description }: BannerImageProps) {
           />
         </span>
         <figure className={styles.expandedFigure}>
+          <figcaption className={styles.imageTitle}>
+            <p className="sub-heading">{title}</p>
+          </figcaption>
+
           <div
             className={styles.imageViewport}
             data-zoomed={isZoomed}
@@ -72,19 +81,15 @@ function BannerImage({ src, title, alt, description }: BannerImageProps) {
             </div>
           </div>
 
-          <figcaption className={styles.caption}>
-            <p className={`sub-heading ${styles.imageTitle}`}>{title}</p>
-
-            {description && (
-              <p className={`font-base ${styles.imageDescription}`}>
-                {description}
-              </p>
-            )}
-          </figcaption>
+          {description && (
+            <figcaption className={styles.imageDescription}>
+              <p className="font-base">{description}</p>
+            </figcaption>
+          )}
         </figure>
       </dialog>
     </>
   );
 }
 
-export default BannerImage;
+export default ExpandableImage;

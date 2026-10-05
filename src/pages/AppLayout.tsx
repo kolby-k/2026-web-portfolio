@@ -10,6 +10,7 @@ function AppLayout() {
       <main>
         <Outlet />
       </main>
+      <hr className="quarter-width" />
       <Footer />
     </>
   );

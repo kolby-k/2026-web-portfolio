@@ -14,17 +14,20 @@ function ActivityCard({ activity }: ActivityCardProps) {
 
   return (
     <div className={`card-ui`}>
-      <CustomLink type="internal" to={`/projects/${slug}`} variant="wrapper">
-        <div className={styles.cardContent}>
-          <p className={`muted-text upper-text font-xs`}>{proper(mainFocus)}</p>
+      <CustomLink
+        type="internal"
+        to={`/projects/${slug}`}
+        variant="wrapper"
+      ></CustomLink>
+      <div className={styles.cardContent}>
+        <p className={`muted-text upper-text font-xs`}>{proper(mainFocus)}</p>
 
-          <p className={`section-title ${styles.cardTitle}`}>
-            {title} <RxArrowTopRight className={styles.cardIcon} />
-          </p>
+        <p className={`section-title ${styles.cardTitle}`}>
+          {title} <RxArrowTopRight className={styles.cardIcon} />
+        </p>
 
-          <p className={`secondary-text`}>{shortDescription}</p>
-        </div>
-      </CustomLink>
+        <p className={`secondary-text`}>{shortDescription}</p>
+      </div>
     </div>
   );
 }

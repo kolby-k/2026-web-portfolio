@@ -9,6 +9,7 @@ type ButtonProps = {
   baseStyle?: boolean;
   iconSide?: "left" | "right";
   children?: ReactNode;
+  style?: string;
 };
 
 function Button({
@@ -19,12 +20,13 @@ function Button({
   baseStyle = true,
   iconSide,
   children,
+  style,
 }: ButtonProps) {
   const buttonStyle = "buttonVariant" + variant;
   const buttonSize = "button_" + size;
   return (
     <button
-      className={`${styles[buttonStyle]} ${baseStyle && styles.buttonBase} ${styles[buttonSize]}`}
+      className={`${styles[buttonStyle]} ${baseStyle && styles.buttonBase} ${styles[buttonSize]} ${style}`}
       onClick={handleClick}
     >
       {iconSide === "left" && children}

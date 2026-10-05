@@ -116,8 +116,8 @@ body {
   padding: 1rem;
 }
 
-hr {
-  border-color: var(--divider);
+.mt1 {
+  margin-top: 1rem;
 }
 
 .half-width {
@@ -144,4 +144,10 @@ hr {
 .text-block {
   padding: 1rem;
   text-align: left;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin-block: clamp(1.25rem, 4vw, 3rem);
 }

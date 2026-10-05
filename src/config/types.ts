@@ -10,7 +10,7 @@ type ActivityBase = {
   year: string;
   technology?: Technologies;
   article: {
-    bannerImage: string;
+    expandableImage: string;
     fullDescription: string;
     content: ArticleContent[];
   };
@@ -51,7 +51,7 @@ export type ArticleContent =
       type: "image";
       image: string;
       order: number; // article sorts before rendering based on this order
-      imageTitle?: string;
+      imageTitle: string;
       imageDescription?: string;
     };
 

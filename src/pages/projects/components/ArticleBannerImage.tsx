@@ -1,14 +1,14 @@
 import styles from "../project.module.css";
 
-type ArticleBannerImageProps = {
+type ArticleExpandableImageProps = {
   projectId: string;
 };
-function ArticleBannerImage({ projectId }: ArticleBannerImageProps) {
+function ArticleExpandableImage({ projectId }: ArticleExpandableImageProps) {
   return (
-    <div className={styles.bannerImage}>
+    <div className={styles.expandableImage}>
       TODO.. render image based on project id: {projectId}
     </div>
   );
 }
 
-export default ArticleBannerImage;
+export default ArticleExpandableImage;

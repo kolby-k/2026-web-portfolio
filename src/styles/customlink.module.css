@@ -6,6 +6,8 @@
   display: flex;
   align-items: center;
   gap: 0.2rem;
+
+  z-index: 100;
 }
 .customLinkBase:hover {
   text-decoration: underline;
@@ -71,6 +73,12 @@
   cursor: pointer;
 
   height: 100%;
+  background-color: transparent;
+  padding: 1rem;
+  width: 100%;
+  position: absolute;
+  inset: 0;
+  z-index: 1000;
 }
 .customLink_wrapper:hover {
   text-decoration: none;

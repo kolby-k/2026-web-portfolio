@@ -63,7 +63,7 @@ function TimelineCard({ item }: TimelineCardProps) {
           </span>
         </div>
         <p className={"secondary-text"}>{item.description}</p>
-        {!!projects && !!projects.length ? (
+        {!!projects && !!projects.length && (
           <div className={styles.timelineProjectFeatures}>
             <p className="muted-text font-sm">
               {item.type === "work" ? "Related work" : "View project"}
@@ -83,8 +83,6 @@ function TimelineCard({ item }: TimelineCardProps) {
               );
             })}
           </div>
-        ) : (
-          <br />
         )}
       </div>
     </div>

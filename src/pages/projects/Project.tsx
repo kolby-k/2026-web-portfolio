@@ -1,22 +1,18 @@
 import styles from "./project.module.css";
-import { Link, useParams } from "react-router-dom";
-import { PROJECTS_DETAILED } from "../../config/constants";
+import { Link } from "react-router-dom";
 import Tag from "../../components/Tag";
 import CustomLink from "../../components/CustomLink";
 import { RxArrowLeft } from "react-icons/rx";
-import BannerImage from "../../components/BannerImage";
+import ExpandableImage from "../../components/ExpandableImage";
+import useProject from "../../hooks/useProject";
 
 function Project() {
-  const { projectSlug } = useParams();
-
-  const project = PROJECTS_DETAILED.find(
-    (project) => project.slug === projectSlug,
-  );
+  const { current: project } = useProject();
 
   if (!project) {
     return (
       <div className={styles.content}>
-        <p className="muted-text">Project "{projectSlug}" not found</p>
+        <p className="muted-text">Project not found</p>
         <Link to={"/"}>Go Home</Link>
       </div>
     );
@@ -24,11 +20,16 @@ function Project() {
 
   return (
     <div className={styles.content}>
-      <span className={styles.homeButton}>
-        <CustomLink type="internal" to="/" variant="muted" size="base">
-          <RxArrowLeft /> Home
-        </CustomLink>
-      </span>
+      <CustomLink
+        type="internal"
+        to="/"
+        variant="muted"
+        size="base"
+        style={styles.homeButton}
+      >
+        <RxArrowLeft /> Home
+      </CustomLink>
+
       <div className={`${styles.header}`}>
         <span className={`${styles.headerTitleSection}`}>
           <h1 className="page-heading">{project.title}</h1>
@@ -39,8 +40,8 @@ function Project() {
             <Tag key={`${project.id}-${f}`} title={f} size="xs" />
           ))}
         </span>
-        <BannerImage
-          src={project.article.bannerImage}
+        <ExpandableImage
+          src={project.article.expandableImage}
           title="Design Overview"
           description={project.shortDescription}
         />
@@ -109,9 +110,13 @@ function Project() {
             );
           } else if (type === "image") {
             return (
-              <div key={`${type}-${idx}`}>
-                image here
-                {section.imageDescription && <p>{section.imageDescription}</p>}
+              <div key={`${type}-${idx}`} className={styles.sectionImageBlock}>
+                <p className="muted-text font-md">{section.imageTitle}</p>
+                <ExpandableImage
+                  src={section.image}
+                  title={section.imageTitle}
+                  description={section.imageDescription}
+                />
               </div>
             );
           }

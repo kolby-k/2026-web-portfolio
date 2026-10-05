@@ -9,6 +9,7 @@ type BaseLinkProps = {
   size?: "sm" | "base" | "md" | "lg";
   variant?: "default" | "link" | "icon" | "wrapper" | "muted";
   children?: ReactNode;
+  style?: string;
 };
 type InternalLinkProps = BaseLinkProps & {
   type: "internal";
@@ -32,12 +33,14 @@ function CustomLink(props: CustomLinkProps) {
       variant = "default",
       showIcon = false,
       children,
+      style,
     } = props;
     return (
       <a
         className={`${styles.customLinkBase} 
             ${styles[`fontSize_${size}`]}
-            ${styles[`customLink_${variant}`]}`}
+            ${styles[`customLink_${variant}`]}
+            ${style}`}
         href={href}
         title={title}
         target="_blank"
@@ -55,6 +58,7 @@ function CustomLink(props: CustomLinkProps) {
       variant = "default",
       showIcon = false,
       children,
+      style,
     } = props;
 
     return (
@@ -66,7 +70,9 @@ function CustomLink(props: CustomLinkProps) {
           return `${styles.customLinkBase} 
             ${styles[`fontSize_${size}`]}
             ${styles[`customLink_${variant}`]}
-            ${active && !minimalUI ? styles.customLink_active : ""}`;
+            ${active && !minimalUI ? styles.customLink_active : ""}
+            ${style}
+            `;
         }}
         to={to}
         title={title}

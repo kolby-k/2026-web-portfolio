@@ -1,12 +1,13 @@
 import type { ActivityItem, ActivityItemSimple, TimelineItem } from "./types";
-import EvolveBannerImage from "../assets/evolve-home.png";
-import SummarizeBannerImage from "../assets/summarizer-home.png";
-import PlaceholderBannerImage from "../assets/placeholder.png";
+import EvolveExpandableImage from "../assets/evolve-home.png";
+import SummarizeExpandableImage from "../assets/summarizer-home.png";
+import PlaceholderExpandableImage from "../assets/placeholder.png";
 import EvolveThumbnail from "../assets/evolve-card-thumbnail.png";
-import SummarizerBannerImage from "../assets/summarizer-card-thumbnail.png";
-import DeveloperToolkitBannerImage from "../assets/developer-toolkit.png";
+import SummarizerExpandableImage from "../assets/summarizer-card-thumbnail.png";
+import DeveloperToolkitExpandableImage from "../assets/developer-toolkit.png";
 import DeveloperToolkitThumbnail from "../assets/dev-toolkit-card-thumbnail.png";
 import MeetingAutomationBanner from "../assets/MeetingAutomationBanner.png";
+import ZohoFlowHistory from "../assets/zflow-demo.webp";
 
 // all ActivityItem properties
 export const PROJECTS_DETAILED: ActivityItem[] = [
@@ -28,10 +29,10 @@ export const PROJECTS_DETAILED: ActivityItem[] = [
       integrations: ["Zoho CRM", "Zoho Catalyst", "Zoho Flow"],
       database: "Zoho Catalyst Data Store",
     },
-    thumbnail: PlaceholderBannerImage,
+    thumbnail: PlaceholderExpandableImage,
     urls: null,
     article: {
-      bannerImage: MeetingAutomationBanner,
+      expandableImage: MeetingAutomationBanner,
       fullDescription:
         "I built an integration that uses Microsoft Teams transcripts and attendance reports to automate meeting summaries and updates in Zoho CRM. It now processes more than 250 meetings per month, handling work that staff previously completed manually.",
       content: [
@@ -68,6 +69,14 @@ export const PROJECTS_DETAILED: ActivityItem[] = [
           order: 3,
         },
         {
+          type: "image",
+          image: ZohoFlowHistory,
+          imageTitle: "Zoho Flow History (example)",
+          imageDescription:
+            "Zoho Flow records every execution with detailed logs, making it easier to debug and retry failed runs.",
+          order: 4,
+        },
+        {
           type: "text",
           heading: "Implementation and Development Details",
           paragraphs: [
@@ -77,7 +86,7 @@ export const PROJECTS_DETAILED: ActivityItem[] = [
             "The same queue handles subscription maintenance. When Microsoft Graph sends a lifecycle notification requiring action, the HTTP function queues the necessary reauthorization or renewal work to keep notifications active.",
             "Meeting notifications trigger jobs to retrieve the transcripts and attendance reports. Once retrieval is complete, the processing function deletes the subscription and sends the data to the appropriate Zoho Flow workflow through its webhook.",
           ],
-          order: 4,
+          order: 5,
         },
         {
           type: "text",
@@ -88,7 +97,7 @@ export const PROJECTS_DETAILED: ActivityItem[] = [
             "The CRM records themselves are also more useful. With summaries, discussion topics, meeting status, and duration available together, staff have a more consistent reference when reviewing previous interactions.",
             "For managers, more current and consistent data makes meeting reports easier to interpret. There is less uncertainty about whether a gap in the report reflects a meeting that did not take place or an update that someone has not entered. This reduces the need to investigate missing information before using those reports.",
           ],
-          order: 5,
+          order: 6,
         },
       ],
     },
@@ -121,7 +130,7 @@ export const PROJECTS_DETAILED: ActivityItem[] = [
       },
     ],
     article: {
-      bannerImage: EvolveBannerImage,
+      expandableImage: EvolveExpandableImage,
       fullDescription: "Long description: TODO",
       content: [
         {
@@ -152,7 +161,7 @@ export const PROJECTS_DETAILED: ActivityItem[] = [
       integrations: ["Google Oauth"],
       database: "Redis",
     },
-    thumbnail: SummarizeBannerImage,
+    thumbnail: SummarizeExpandableImage,
     urls: [
       {
         type: "project",
@@ -160,7 +169,7 @@ export const PROJECTS_DETAILED: ActivityItem[] = [
       },
     ],
     article: {
-      bannerImage: SummarizerBannerImage,
+      expandableImage: SummarizerExpandableImage,
       fullDescription: "Long description: TODO",
       content: [
         {
@@ -202,7 +211,7 @@ export const PROJECTS_DETAILED: ActivityItem[] = [
       },
     ],
     article: {
-      bannerImage: DeveloperToolkitBannerImage,
+      expandableImage: DeveloperToolkitExpandableImage,
       fullDescription: "Long description: TODO",
       content: [
         {
@@ -234,10 +243,10 @@ export const PROJECTS_DETAILED: ActivityItem[] = [
       libraries: ["Express"],
       integrations: ["Zoho CRM", "Zoho Catalyst"],
     },
-    thumbnail: PlaceholderBannerImage,
+    thumbnail: PlaceholderExpandableImage,
     urls: null,
     article: {
-      bannerImage: PlaceholderBannerImage,
+      expandableImage: PlaceholderExpandableImage,
       fullDescription:
         "Developed a serverless assignment API using Node.js and Zoho Catalyst to route inquiries from contact forms, voicemails, and AI agent handoffs. The engine combines configurable assignment rules, staff availability, existing contact ownership, and expertise-weighted workload scoring to select an appropriate team member. Integration with Zoho CRM automates task creation and notifications, reducing manual coordination and supporting timely follow-up.",
       content: [
@@ -308,10 +317,10 @@ export const PROJECTS_DETAILED: ActivityItem[] = [
       libraries: [],
       integrations: ["Zoho CRM", "Zoho Flow", "Zoho Forms"],
     },
-    thumbnail: PlaceholderBannerImage,
+    thumbnail: PlaceholderExpandableImage,
     urls: null,
     article: {
-      bannerImage: PlaceholderBannerImage,
+      expandableImage: PlaceholderExpandableImage,
       fullDescription:
         "Developed an AI customer service agent to handle initial inquiries and reduce time spent manually responding to unqualified leads. The agent classifies each inquiry, requests additional information when appropriate, and routes requests requiring human attention to staff. With more than 200 inquiries handled by AI each month on average, the system frees staff to focus on direct customer support while reducing average response times from 1-2 business days to 20 minutes.",
       content: [
@@ -380,10 +389,10 @@ export const PROJECTS_DETAILED: ActivityItem[] = [
       libraries: [],
       integrations: ["Zoho Analytics"],
     },
-    thumbnail: PlaceholderBannerImage,
+    thumbnail: PlaceholderExpandableImage,
     urls: null,
     article: {
-      bannerImage: PlaceholderBannerImage,
+      expandableImage: PlaceholderExpandableImage,
       fullDescription:
         "Designed a comprehensive dashboard in Zoho Analytics to track organizational KPIs and support client services reporting. Built data pipelines to bring third-party data into the platform, cleaned and prepared it for analysis, and developed SQL queries to combine related tables into reporting datasets tailored to the organization’s needs.",
       content: [
